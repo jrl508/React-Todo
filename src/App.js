@@ -41,14 +41,28 @@ class App extends React.Component {
       }
       this.setState({
         tasks: [...this.state.tasks, newTask],
-        taskInput: ""
+        taskInput:" "
       })
     }
+
+    crossTask= (id) =>{
+      this.setState({tasks: this.state.tasks.map(obj=>{
+        if (obj.id===id){
+          return{
+            ...obj,
+            completed: !obj.completed
+          }
+        } else{
+          return obj
+        }
+      })
+    })
+  }
   render() {
     return (
       <div>
         <h2>Todo List</h2>
-        <TodoList tasks={this.state.tasks}/>
+        <TodoList tasks={this.state.tasks} crossTask={this.crossTask}/>
         <TodoForm taskInput={this.taskInput} changeHandler={this.changeHandler} addTask={this.addTask}/>
       </div>
     );

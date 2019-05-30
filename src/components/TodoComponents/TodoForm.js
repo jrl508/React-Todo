@@ -2,7 +2,7 @@ import React from 'react'
 
 function TodoForm(props){
     return(
-        <form onSubmit={props.addTask}>
+        <form>
             <input
             type="text"
             name="taskInput"
@@ -10,7 +10,7 @@ function TodoForm(props){
             value={props.taskInput}
             onChange={props.changeHandler}
             />
-            <button>Submit</button>
+            <button onClick={props.addTask}>Submit</button>
             <button>Clear Completed</button>
         </form>
     )
