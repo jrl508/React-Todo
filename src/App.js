@@ -1,24 +1,14 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import './components/TodoComponents/Todo.css'
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
     state={
-      tasks:[
-        {
-          task: 'Organize Garage',
-          id: 1528817077286,
-          completed: false
-        },
-        {
-          task: 'Bake Cookies',
-          id: 1528817084358,
-          completed: false
-        }
-      ],
+      tasks:[],
       taskInput: ""
     };
 
@@ -61,16 +51,19 @@ class App extends React.Component {
     clearComplete= (e) =>{
       e.preventDefault();
       this.setState({
-        tasks: this.state.tasks.filter(task=> task.completed==false)
+        tasks: this.state.tasks.filter(task=> task.completed===false)
       })
     }
 
   render() {
     return (
-      <div>
-        <h2>Todo List</h2>
-        <TodoList tasks={this.state.tasks} crossTask={this.crossTask}/>
+      <div className= "app">
+        <div className="header">
+          <h1>Composition</h1>
+          <h1>Book</h1>
+        </div>
         <TodoForm taskInput={this.taskInput} changeHandler={this.changeHandler} addTask={this.addTask} clearComplete={this.clearComplete}/>
+        <TodoList tasks={this.state.tasks} crossTask={this.crossTask}/>
       </div>
     );
   }
